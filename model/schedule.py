@@ -17,7 +17,8 @@ class AnimalScheduleModel(BaseModel):
     def transform_schedule_to_object(self, db_row):
         return {
             'id': db_row[0],
-            'time': db_row[2],
-            'portions': db_row[3],
-            'feed_at': db_row[4]
+            'type': db_row[2],
+            'time': db_row[3],
+            'portions': db_row[4],
+            'feed_at': db_row[5]
         }

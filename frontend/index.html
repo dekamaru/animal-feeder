@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Animal Feeder</title>
+    <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/css/all.min.css" rel="stylesheet">
+    <link href="/assets/css/loader.css" rel="stylesheet">
+
+    <style>
+        .card {
+            margin-bottom: 15px;
+        }
+
+        .create_animal_form {
+            margin-top: 30px
+        }
+
+        .create_animal_form button {
+            margin-left: 15px
+        }
+
+        .loader{
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            transform: -webkit-translate(-50%, -50%);
+            transform: -moz-translate(-50%, -50%);
+            transform: -ms-translate(-50%, -50%);
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="loader">
+    <span class="cssload-loader"><span class="cssload-loader-inner"></span></span>
+    <p style="margin-top: 10px">Пожалуйста, подождите...</p>
+</div>
+<main role="main" id="app" class="container" style="padding-top: 30px"></main>
+
+<script type="text/html" id="animal_view">
+    <h1 style="margin-bottom: 36px" class="text-center">Управление кормушкой</h1>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Режим питания</h5>
+                        <p class="card-text">qweqwe</p>
+                        <button type="submit" class="btn btn-primary btn-block"><i class="fa fa-check"></i> Сохранить</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Ручное кормление</h5>
+                    <form method="POST" action="">
+                        <p class="card-text">
+                            <input type="text" name="count" class="form-control" placeholder="Количество кормлений">
+                        </p>
+                        <button type="submit" class="btn btn-success btn-block"><i class="fa fa-cookie-bite"></i> Покормить</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">История за сегодня</h5>
+                    <p class="card-text">
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th>Время</th>
+                                <th>Статус</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">История кормлений</h5>
+                    <p class="card-text">
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th>Когда</th>
+                                <th>Тип</th>
+                                <th>Количество</th>
+                                <th>Статус</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <a href="#" class="btn btn-outline-info"><i class="fa fa-arrow-left"></i> Сюда</a>
+                        </div>
+                        <div class="col text-right">
+                            <a href="#" class="btn btn-outline-info">Туда <i class="fa fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script type="text/html" id="no_animals_screen">
+    <div class="text-center">
+        <h1>Добро пожаловать в Animal Feeder</h1>
+        <h3 style="margin-top: 30px">Создайте нового питомца</h3>
+        <div class="create_animal_form">
+            <div class="form-inline">
+                <input id="animal-name" type="text" placeholder="Имя питомца" class="form-control col-md-4 offset-3">
+                <div id="animal-name-invalid-feedback" class="invalid-feedback"></div>
+                <button onclick="app.handleCreateAnimal()" class="btn btn-primary">Продолжить<i style="margin-left: 10px" class="fa fa-arrow-right"></i></button>
+            </div>
+        </div>
+        <div id="select-existing-animal">
+            <p class="text-muted" style="margin-top: 15px">или</p>
+            <h3 style="margin-bottom: 30px">Выберите существующего питомца</h3>
+             <div class="form-inline">
+                <select id="animals_select" class="form-control col-md-4 offset-3"></select>
+                <button onclick="app.handleGotoAnimal(this)" style="margin-left: 15px" class="btn btn-primary">Продолжить<i style="margin-left: 10px" class="fa fa-arrow-right"></i></button>
+            </div>
+        </div>
+
+    </div>
+</script>
+
+<script src="/assets/js/jquery-3.3.1.min.js"></script>
+<script src="/assets/js/popper.min.js"></script>
+<script src="/assets/js/bootstrap.min.js"></script>
+<script src="/assets/js/main.js"></script>
+</body>
+</html>
