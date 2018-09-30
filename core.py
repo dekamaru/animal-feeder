@@ -7,8 +7,11 @@ def load(app):
     init_db_schema(db)
 
     animal_controller = AnimalController(app, db)
+
     app.add_url_rule('/animal', view_func=animal_controller.list, methods={"GET"})
     app.add_url_rule('/animal', view_func=animal_controller.create, methods={"POST"})
+    app.add_url_rule('/animal/<id>', view_func=animal_controller.view, methods={"GET"})
+
 
     return {'db': db}
 

@@ -1,7 +1,7 @@
-class AnimalModel(object):
+from model.base import BaseModel
 
-    def __init__(self, db):
-        self.db = db
+
+class AnimalModel(BaseModel):
 
     def create(self, name):
         c = self.db.cursor()
@@ -14,6 +14,17 @@ class AnimalModel(object):
         c.execute('SELECT * FROM animal WHERE name = ?', (name,))
         item = c.fetchone()
         c.close()
+        if item is None:
+            return False
+        return self.transform_animal_to_object(item)
+
+    def get_one_by_id(self, id):
+        c = self.db.cursor()
+        c.execute('SELECT * FROM animal WHERE id = ?', (id,))
+        item = c.fetchone()
+        c.close()
+        if item is None:
+            return False
         return self.transform_animal_to_object(item)
 
     def get_all(self):
