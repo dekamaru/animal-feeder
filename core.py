@@ -2,7 +2,6 @@ from controller.animal import AnimalController
 from controller.index import IndexController
 import sqlite3
 
-
 def load(app):
     db = sqlite3.connect('app.db', check_same_thread=False, isolation_level=None)
     init_db_schema(db)
@@ -19,6 +18,10 @@ def load(app):
     app.add_url_rule('/animal', view_func=animal_controller.create, methods={"POST"})
     app.add_url_rule('/animal/<id>', view_func=animal_controller.view, methods={"GET"})
 
+    # schedule
+    app.add_url_rule('/schedule/<id>', view_func=animal_controller.delete_schedule, methods={"DELETE"})
+    app.add_url_rule('/animal/<id>/schedule', view_func=animal_controller.update_schedule, methods={"PUT"})
+    app.add_url_rule('/schedule/feed', view_func=animal_controller.scheduled_feed, methods={"GET"})
 
     return {'db': db}
 

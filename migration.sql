@@ -16,5 +16,6 @@ CREATE TABLE IF NOT EXISTS `feed_history` (
   `type` varchar(255),
   `time` varchar(5),
   `portions` integer(11),
+  `status` varchar(255),
   `created_at` datetime DEFAULT CURRENT_TIMESTAMP
 );

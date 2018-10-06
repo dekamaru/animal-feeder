@@ -14,9 +14,19 @@ class AnimalFeedHistory(BaseModel):
                 result.append(self.transform_history_to_object(item))
         return result
 
+    def create(self, animal_id, type, time, portions, status):
+        sql = 'INSERT INTO feed_history (animal_id, `type`, `time`, portions, status) VALUES (?, ?, ?, ?, ?)'
+        c = self.db.cursor()
+        c.execute(sql, (animal_id, type, time, portions, status,))
+        c.close()
+
     def transform_history_to_object(self, db_row):
         return {
             'id': db_row[0],
-            'time': db_row[2],
-            'portions': db_row[3]
+            'animal_id': db_row[1],
+            'type': db_row[2],
+            'time': db_row[3],
+            'portions': db_row[4],
+            'status': db_row[5],
+            'feed_at': db_row[6]
         }

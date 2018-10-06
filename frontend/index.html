@@ -35,25 +35,36 @@
 
 <body>
 
-<div class="loader">
+<div class="loader" style="display: none">
     <span class="cssload-loader"><span class="cssload-loader-inner"></span></span>
     <p style="margin-top: 10px">Пожалуйста, подождите...</p>
 </div>
+
 <main role="main" id="app" class="container" style="padding-top: 30px"></main>
 
 <script type="text/html" id="animal_view">
-    <h1 style="margin-bottom: 36px" class="text-center">Управление кормушкой</h1>
+    <h1 style="margin-bottom: 36px" class="text-center">Управление кормушкой: <span id="animal_name"></span></h1>
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-4">
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Режим питания</h5>
-                        <p class="card-text">qweqwe</p>
-                        <button type="submit" class="btn btn-primary btn-block"><i class="fa fa-check"></i> Сохранить</button>
+                        <p class="card-text" id="animal_schedule">
+
+                        </p>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <button type="button" onclick="app.animalPage.saveSchedule()" class="btn btn-primary btn-block"><i class="fa fa-check"></i> Сохранить</button>
+                            </div>
+                            <div class="col-md-6">
+                                <button type="button" onclick="app.animalPage.addScheduleItem()" class="btn btn-success btn-block"><i class="fa fa-plus"></i> Добавить</button>
+                            </div>
+                        </div>
+
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-8">
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Ручное кормление</h5>
@@ -129,7 +140,6 @@
         <div class="create_animal_form">
             <div class="form-inline">
                 <input id="animal-name" type="text" placeholder="Имя питомца" class="form-control col-md-4 offset-3">
-                <div id="animal-name-invalid-feedback" class="invalid-feedback"></div>
                 <button onclick="app.handleCreateAnimal()" class="btn btn-primary">Продолжить<i style="margin-left: 10px" class="fa fa-arrow-right"></i></button>
             </div>
         </div>
@@ -145,9 +155,29 @@
     </div>
 </script>
 
+<script type="text/html" id="schedule_item">
+<fieldset class="form-group schedule-item" data-id="{1}">
+    <div class="form-inline">
+        <fieldset class="form-group">
+            <div class="form-inline">
+                <input value="{2}" class="form-control" style="width: 50px">
+                &nbsp;:&nbsp;
+                <input value="{3}" class="form-control" style="width: 50px">
+            </div>
+        </fieldset>
+        <div class="form-group">
+            <input type="number" value="{4}" style="margin-left: 15px; width: 70px" class="form-control">
+        </div>
+        <span class="control-button" style="margin-left: 15px">
+            <button onclick="app.animalPage.removeScheduleItem(this)" type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
+        </span>
+    </div>
+</fieldset>
+</script>
+
 <script src="/assets/js/jquery-3.3.1.min.js"></script>
 <script src="/assets/js/popper.min.js"></script>
 <script src="/assets/js/bootstrap.min.js"></script>
-<script src="/assets/js/main.js"></script>
+<script src="/assets/js/main.js?v=2"></script>
 </body>
 </html>
